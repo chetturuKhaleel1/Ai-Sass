@@ -1,14 +1,12 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { API_BASE_URL } from "../config";
 
 export default function StatusPage() {
   const { jobId } = useParams();
-  const [job, setJob] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [cardsPreview, setCardsPreview] = useState(null);
-  const [cardsLoading, setCardsLoading] = useState(false);
+  // ...
   const [cardsError, setCardsError] = useState("");
-  const backend = "http://localhost:5000";
+  const backend = API_BASE_URL;
 
   // ==============================
   // FIX: Convert absolute path → public URL

@@ -3,21 +3,13 @@ import { Sparkles, Zap, Video, ArrowRight, Palette } from "lucide-react";
 import UploadBox from "../components/UploadBox";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { API_BASE_URL } from "../config";
 
 export default function ReelsLandingPage() {
     const [activeStyle, setActiveStyle] = useState("hormozi");
-
-    const STYLES = [
-        { id: "hormozi", name: "Hormozi", preview: "HORMOZI" },
-        { id: "devin", name: "Devin", preview: "DEVIN" },
-        { id: "beast", name: "Beast", preview: "BEAST" },
-        { id: "neon", name: "Neon", preview: "NEON" },
-        { id: "glitch", name: "Glitch", preview: "GLITCH" },
-        { id: "minimal", name: "Minimal", preview: "Minimal" },
-    ];
-
+    // ...
     async function handleSubmit(payload) {
-        const backend = "http://localhost:5000";
+        const backend = API_BASE_URL;
 
         // If FILE upload
         if (payload.file) {

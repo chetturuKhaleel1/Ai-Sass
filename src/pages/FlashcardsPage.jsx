@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import FlashcardDeck from "../components/FlashcardDeck";
+import { API_BASE_URL } from "../config";
 
 export default function FlashcardsPage() {
   const { jobId } = useParams();
-  const backend = "http://localhost:5000";
+  const backend = API_BASE_URL;
 
   const [cards, setCards] = useState([]);
   const [loading, setLoading] = useState(true);

@@ -4,11 +4,12 @@ import HeroCinematic from "../components/HeroCinematic";
 import UploadBox from "../components/UploadBox";
 import FeaturesSection from "../components/FeaturesSection";
 import Footer from "../components/Footer";
+import { API_BASE_URL } from "../config";
 
 export default function HomePage() {
 
   async function handleSubmit(payload) {
-    const backend = "http://localhost:5000";
+    const backend = API_BASE_URL;
 
 
     // If FILE upload

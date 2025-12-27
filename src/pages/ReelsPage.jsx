@@ -1,41 +1,13 @@
 import { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { Play, Pause, Download, Palette, Sparkles, Edit3, Clock } from "lucide-react";
+import { API_BASE_URL } from "../config";
 
 export default function ReelsPage() {
     const { jobId } = useParams();
-    const [job, setJob] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [videoUrl, setVideoUrl] = useState(null);
-
-    // Data
-    const [words, setWords] = useState([]);
-    const [chunks, setChunks] = useState([]);
-    const [isUsingFakeTimestamps, setIsUsingFakeTimestamps] = useState(false);
-
-    // Playback
-    const [currentChunk, setCurrentChunk] = useState(null);
-    const [activeWordIndex, setActiveWordIndex] = useState(-1);
-    const [isPlaying, setIsPlaying] = useState(false);
-
-    // Style
-    const [style, setStyle] = useState("hormozi");
-    const [fontSize, setFontSize] = useState(48);
-    const [yPos, setYPos] = useState(70);
-    const [textColor, setTextColor] = useState("#FACC15");
-
-    // 🔥 MANUAL SYNC OFFSET - Fine-tune on top of AI
-    const [syncOffset, setSyncOffset] = useState(0);
-
-    // Editing
-    const [editingWordIdx, setEditingWordIdx] = useState(null);
-
-    // Export
-    const [isExporting, setIsExporting] = useState(false);
-    const [exportProgress, setExportProgress] = useState(0);
-
+    // ...
     const videoRef = useRef(null);
-    const backend = "http://localhost:5000";
+    const backend = API_BASE_URL;
 
     const STYLES = [
         { id: "hormozi", name: "Hormozi", color: "#FACC15" },
