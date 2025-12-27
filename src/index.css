@@ -1,0 +1,247 @@
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* Tailwind */
+@import "tailwindcss";
+
+/* === ARCHITECTURAL DESIGN SYSTEM === */
+:root {
+  /* Base - Zinc Palette (Linear/Raycast style) */
+  --bg-depth: #09090b;
+  /* Deepest black */
+  --bg-surface: #18181b;
+  /* Panel background */
+  --bg-highlight: #27272a;
+  /* Hover state */
+
+  /* Borders */
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.15);
+
+  /* Text */
+  --txt-primary: #f4f4f5;
+  --txt-secondary: #a1a1aa;
+  --txt-tertiary: #52525b;
+
+  /* Accents - Professional Indigo/Violet */
+  --accent-primary: #6366f1;
+  --accent-glow: rgba(99, 102, 241, 0.4);
+
+  /* Physics */
+  --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  /* Bouncy but controlled */
+
+  /* Fonts */
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+/* Manual Utilities (since we might lack tailwind.config) */
+.bg-depth {
+  background-color: var(--bg-depth);
+}
+
+.bg-surface {
+  background-color: var(--bg-surface);
+}
+
+.bg-highlight {
+  background-color: var(--bg-highlight);
+}
+
+.text-primary {
+  color: var(--txt-primary);
+}
+
+.text-secondary {
+  color: var(--txt-secondary);
+}
+
+.text-tertiary {
+  color: var(--txt-tertiary);
+}
+
+.border-subtle {
+  border-color: var(--border-subtle);
+}
+
+.border-strong {
+  border-color: var(--border-strong);
+}
+
+/* Global Reset */
+html,
+body,
+#root {
+  height: 100%;
+  background-color: var(--bg-depth);
+  color: var(--txt-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* === UTILITIES === */
+
+/* Grain Overlay */
+.bg-grain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* Grid Background */
+.bg-grid-pattern {
+  background-size: 50px 50px;
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+}
+
+/* Glass Panel - Technical */
+.glass-tech {
+  background: rgba(24, 24, 27, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-subtle);
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 1),
+    0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Typography Utilities */
+.text-display {
+  font-size: clamp(3rem, 5vw, 4.5rem);
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  font-weight: 800;
+}
+
+.text-mono-sm {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  letter-spacing: -0.02em;
+}
+
+/* Animations */
+@keyframes scanline {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-scan {
+  animation: scanline 2s linear infinite;
+}
+
+/* === COMPONENT OVERRIDES === */
+
+@layer components {
+  .btn-tech {
+    /* Replaced @apply with standard CSS to avoid build errors */
+    position: relative;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    font-size: 0.875rem;
+    transition: all 0.2s;
+    overflow: hidden;
+
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    color: var(--txt-primary);
+    font-family: var(--font-mono);
+  }
+
+  .btn-tech:hover {
+    border-color: var(--txt-secondary);
+    background: var(--bg-highlight);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  .btn-primary-tech {
+    /* Replaced @apply with standard CSS */
+    position: relative;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: #fff;
+    transition: all 0.2s;
+
+    background: #fff;
+    color: #000;
+    border: 1px solid #fff;
+  }
+
+  .btn-primary-tech:hover {
+    background: #e4e4e7;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+  }
+}
+
+/* === FLASHCARD PHYSICS === */
+.flashcard-container-pro {
+  perspective: 2000px;
+  transform-style: preserve-3d;
+}
+
+.flashcard-inner-pro {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s var(--ease-spring);
+  transform-style: preserve-3d;
+}
+
+.flashcard-flipped .flashcard-inner-pro {
+  transform: rotateY(180deg);
+}
+
+.flashcard-face-pro {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border-radius: 16px;
+  border: 1px solid var(--border-subtle);
+  background: #18181b;
+  /* Zinc-900 */
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05),
+    0 20px 40px -10px rgba(0, 0, 0, 0.5);
+}
+
+.flashcard-back-pro {
+  transform: rotateY(180deg);
+  background: #09090b;
+  /* Zinc-950 */
+  border: 1px solid var(--border-strong);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--txt-tertiary);
+}
